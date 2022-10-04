@@ -18,8 +18,8 @@ disp(k)
 clear all;
 sys_G1=tf([1,2],[1,6,10]);
 sys_G2=tf([1,1],[1,3]);
-sys_E1=(1/sys_G2-1)*feedback((sys_G1),(1/sys_G2),-1);
-sys_E2=(1/sys_G1+1)*feedback((sys_G2),(1/sys_G1),-1);
+sys_E1=(sys_G2-1)*feedback((sys_G1),(sys_G2),-1);
+sys_E2=(sys_G1+1)*feedback((sys_G2),(sys_G1),-1);
 sys_E=(sys_E1+sys_E2);
 sys3=feedback(sys_E,1,-1)
 
@@ -88,4 +88,6 @@ syms x y; %定义x,y是未知量,
 eqn=[2*x+3*y==1,(-4)*x-6*y==-2];% 定义方程
 vars=[x,y];%定义求解的未知量
 [solX1,solY1]=solve(eqn,vars) % 解方程
+
+
 
